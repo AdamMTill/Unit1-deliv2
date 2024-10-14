@@ -9,48 +9,41 @@ using System.Reflection.Metadata.Ecma335;
         if (!(proceed == Console.ReadLine()))
         {
             Console.WriteLine("You are a coward, " + name);
+            return;
         }
 
         Console.WriteLine("Wonderful! Then let us begin, " + name);
         int score = 0;
-        for (int round = 0; round <= 5; round++)
+        for (int round = 1; round <= 5; round++)
         {
+            Console.WriteLine("heads or tails?");
+            string guess = Console.ReadLine();
             round = round++;
             Random coin = new Random();
             int flip = coin.Next(0, 2);
-            string? heads = "heads";
-            string? tails = "tails";
-            Console.WriteLine("heads or tails?");
-            if (heads == Console.ReadLine())
+            string flip_face = "";
+            if (flip == 0)
             {
-                int choiceh = 0;
-                if (flip == choiceh)
-                {
-                    Console.WriteLine("Correct!");
-                    score = score++;
-                }
-                else if (flip != choiceh)
-                {
-                    Console.WriteLine("Wrong!");
-                }
+                flip_face = "tails";
             }
-            else if (tails == Console.ReadLine())
+            else
             {
-                int choicet = 1;
-                if (flip == choicet)
-                {
-                    Console.WriteLine("Correct!");
-                    score = score++;
-                }
-                else if (flip != choicet)
-                {
-                    Console.WriteLine("Wrong!");
-                }
+                flip_face = "heads";
+            }
+
+            if (guess == flip_face)
+            {
+                Console.WriteLine("Correct!");
+                score = score++;
+            }
+            else
+            {
+                Console.WriteLine("Wrong!");
             }
 
             if (round == 5)
             {
-                Console.WriteLine("Congratulations, " + name + ", you had a score of: " + score);
+                Console.WriteLine("Congratulations, " + name +  ", you had a score of: " + score);
                 break;
             }
         }
